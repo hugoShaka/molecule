@@ -137,4 +137,7 @@ class Docker(base.Base):
         return {'instance': instance_name}
 
     def ansible_connection_options(self, instance_name):
-        return {'ansible_connection': 'docker'}
+        return {
+            'ansible_connection': 'docker',
+            'ansible_host': "%s_%s" % (self._config.scenario.name, instance_name),
+            }
